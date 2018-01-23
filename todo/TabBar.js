@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import TabBarItem from './TabBarItem'
+
+
 const TabBar = ({ setType, type }) => (
  <View style={styles.container}>
  <TabBarItem type={type} title='All'

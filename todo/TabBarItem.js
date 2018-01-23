@@ -1,5 +1,7 @@
 import React from 'react'
 import { Text, TouchableHighlight, StyleSheet } from 'react-native'
+
+
 const TabBarItem = ({ border, title, selected, setType, type }) => (
  <TouchableHighlight
  underlayColor='#efefef'
@@ -13,6 +15,8 @@ const TabBarItem = ({ border, title, selected, setType, type }) => (
  </Text>
  </TouchableHighlight>
 )
+
+
 const styles = StyleSheet.create({
  item: {
  flex: 1,

@@ -1,5 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import TodoButton from './TodoButton'
+
 
 const Todo = ({ todo, toggleComplete, deleteTodo }) => (
     <View style={styles.todoContainer}>

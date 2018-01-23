@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, ScrollView, StyleSheet } from 'react-native'
 import Heading from './heading';
 import Input from './input';
-import Button from './Button';
+import Button from './button';
 import TodoList from './TodoList';
 import TabBar from './TabBar'
 
@@ -13,16 +13,41 @@ class App extends Component {
   constructor() {
  super()
  this.state = {
- inputValue: '',
- todos: [],
- type: 'All'
- }
- this.setType = this.setType.bind(this)
- this.submitTodo = this.submitTodo.bind(this)
+   inputValue: '',
+   todos: [],
+   type: 'All'
+  }
+  this.setType = this.setType.bind(this)
+  this.submitTodo = this.submitTodo.bind(this)
  this.toggleComplete = this.toggleComplete.bind(this) 
  this.deleteTodo = this.deleteTodo.bind(this) 
  }
+ setType (type) {
+  this.setState({ type })
+ } 
  
+ submitTodo () {
+   if (this.state.inputValue.match(/^\s*$/)) {
+  return
+  } 
+  let todo = {
+  title: this.state.inputValue,
+  todoIndex: todoIndex,
+  complete: false
+  } 
+  todoIndex++ 
+  this.state.todos.push(todo) 
+  this.setState({ todos: this.state.todos, inputValue: '' }, () => {
+  console.log('State: ', this.state) 
+  }) 
+ } 
+
+
+
+
+
+
+
  //delete button 
 
  deleteTodo (todoIndex) { 
@@ -45,9 +70,6 @@ class App extends Component {
  } 
 
 
- setType (type) {
-  this.setState({ type })
- } 
 
 
 
@@ -59,24 +81,28 @@ class App extends Component {
  } 
  
  render() {
-  const { inputValue, todos } = this.state
- return (
+  const { inputValue, todos, type } = this.state
+ 
+  return (
  <View style={styles.container}>
  <ScrollView
  keyboardShouldPersistTaps="always"
  style={styles.content}>
  <View />
  <Heading />
+ 
  <Input
  inputValue={inputValue}
  inputChange={(text) => this.inputChange(text)} />
+ 
  <TodoList
+ type={type}
  toggleComplete={this.toggleComplete}
  deleteTodo={this.deleteTodo}
  todos={todos} />
  <Button submitTodo={this.submitTodo} />
  </ScrollView>
- <TabBar type={type} setType={this.setType.bind(this)} />
+  <TabBar type={type} setType={this.setType.bind(this)} /> 
 
  </View>
  )
